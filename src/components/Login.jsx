@@ -40,6 +40,7 @@ const Login = () => {
   
   const handleSinupClick = async() => {
     try {
+      setError('')
       const res = await axios.post(BASE_URL + '/signup', {
         emailId,password,firstName,lastName
       },{withCredentials: true})
