@@ -34,7 +34,7 @@ const Login = () => {
     }
     catch (err) {
       // let errorMessage = err?.response?.data?.error || ("something went wrong")
-      // setError(errorMessage)
+      setError(errorMessage)
     }
   }
 
