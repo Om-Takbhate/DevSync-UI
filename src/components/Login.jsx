@@ -33,22 +33,23 @@ const Login = () => {
       navigate('/')
     }
     catch (err) {
-      // let errorMessage = err?.response?.data?.error || ("something went wrong")
+      let errorMessage = err?.response?.data?.error || ("something went wrong")
       setError(errorMessage)
     }
   }
-
+  
   const handleSinupClick = async() => {
     try {
       const res = await axios.post(BASE_URL + '/signup', {
         emailId,password,firstName,lastName
       },{withCredentials: true})
-
+      
       dispatch(addUser(res?.data?.data))
       navigate('/profile/edit')
     }
     catch (err) {
-      console.error(err)
+      let errorMessage = err?.response?.data?.error || ("something went wrong")
+      setError(errorMessage)
     }
   }
   useEffect(() => {
