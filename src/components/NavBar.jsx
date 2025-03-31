@@ -41,7 +41,7 @@ const NavBar = () => {
     return (
         <div className="navbar bg-base-100 shadow-sm px-3 pr-6">
             <div className="flex-1">
-                <Link to='/' className="btn btn-ghost text-xl hover:bg-base-100">LinkedIn 💻</Link>
+                <Link to='/' className="btn btn-ghost text-xl hover:bg-base-100">DevSync 💻</Link>
             </div>
 
             <label className="swap swap-rotate my-auto">
