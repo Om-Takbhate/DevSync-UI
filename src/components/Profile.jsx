@@ -77,7 +77,7 @@ const Profile = () => {
           </div>
           <div className="card-body left-0 sm:-ml-5">
             <h2 className="card-title text-2xl sm:text-2xl font-bold">{profileData?.firstName} {profileData?.lastName}</h2>
-            <p className='pb-5 text-lg'>{profileData?.about}</p>
+            <p className='pb-5 text-sm sm:text-lg'>{profileData?.about}</p>
             {id ?
               <div className="card-actions justify-start">
                 <button className="btn btn-primary" onClick={handleConnectClick}>
