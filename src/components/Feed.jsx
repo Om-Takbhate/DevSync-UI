@@ -4,6 +4,7 @@ import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUsersFeed, removeOneUserFromFeed } from '../utils/store/slices/userFeedSlice'
 import { Link, useNavigate } from 'react-router-dom'
+import Pagination from './Pagination'
 import UserCard from './UserCard'
 import { addConnections } from '../utils/store/slices/userConnectionSlice'
 import Toast from './Toast'
@@ -12,6 +13,7 @@ const Feed = () => {
 
   const [showToast, setShowToast] = useState(false)
   const [message, setMessage] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const dispatch = useDispatch()
   const usersFeed = useSelector(store => store.usersFeed?.feed)
@@ -47,7 +49,7 @@ const Feed = () => {
 
   const getUsersFeed = async () => {
     try {
-      const res = await axios.get(BASE_URL + '/user/feed', { withCredentials: true })
+      const res = await axios.get(BASE_URL + `/user/feed?page=${currentPage}`, { withCredentials: true })
       const usersFeed = res?.data?.data
       dispatch(addUsersFeed(usersFeed))
     }
@@ -57,10 +59,11 @@ const Feed = () => {
   }
 
   useEffect(() => {
-    if (usersFeed.length == 0) getUsersFeed();
-  }, [])
+    getUsersFeed();
+  }, [currentPage])
 
-  if(usersFeed.length == 0) return <h2 className='text-xl text-center flex-grow pt-20'>No new Users found!</h2>
+
+  if (usersFeed.length == 0) return <h2 className='text-xl text-center flex-grow pt-20'>No new Users found!</h2>
 
 
   return (
@@ -72,6 +75,10 @@ const Feed = () => {
           usersFeed?.map(user => <Link to={`/profile/${user?._id}`} key={user?._id} className='mx-auto'> <UserCard user={user} onClick={handleConnectClick} /> </Link>)
         }
 
+
+      </div>
+      <div className=''>
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
     </>
   )
