@@ -63,7 +63,13 @@ const Feed = () => {
   }, [currentPage])
 
 
-  if (usersFeed.length == 0) return <h2 className='text-xl text-center flex-grow pt-20'>No new Users found!</h2>
+  if (usersFeed.length == 0)
+    return <>
+      <h2 className='text-xl text-center flex-grow pt-20'>No new Users found!</h2>
+      <div className=''>
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      </div>
+    </>
 
 
   return (
