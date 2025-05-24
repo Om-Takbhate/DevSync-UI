@@ -87,7 +87,7 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li><Link to='/connections'>Connections</Link></li>
-                        <li><Link to='/requests/recieved' >Requests <span className="badge badge-sm indicator-item bg-base-100">{requests.length}</span></Link></li>
+                        <li><Link to='/requests/recieved' >Requests <span className="text-white badge badge-sm indicator-item bg-primary">{requests.length}</span></Link></li>
                         <li><button onClick={handleLogoutClick}>Logout</button></li>
                     </ul>
                 </div>

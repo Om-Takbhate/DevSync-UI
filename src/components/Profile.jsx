@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import Skills from './Skills'
 import { USER_PROFILE_BG_URL } from '../utils/constants'
 import Education from './Education'
+import ProfileSkeleton from './skeletons/ProfileSkeleton'
 
 const Profile = () => {
 
@@ -61,7 +62,7 @@ const Profile = () => {
     }
   }, [id, loggedInUser])
 
-  if (!profileData) return
+  if (!profileData) return <ProfileSkeleton />
   return (
     <>
       {showToast ? <Toast show={showToast} message={message} /> : ''}

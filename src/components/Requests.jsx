@@ -9,7 +9,8 @@ const Requests = () => {
 
     const dispatch = useDispatch()
     const requests = useSelector(store => store.requests.requests)
-
+    console.log(requests)
+    
     const fetchConnectionRequests = async () => {
         try{
 
