@@ -13,6 +13,7 @@ import ProfileSkeleton from './skeletons/ProfileSkeleton'
 const Profile = () => {
 
   const { id } = useParams()
+  const [isConnected, setIsConnected] = useState(false)
   const loggedInUser = useSelector(store => store.user?.user)
   const [profileData, setProfileData] = useState(null)
   const [showToast, setShowToast] = useState(false)
@@ -24,6 +25,7 @@ const Profile = () => {
 
       const res = await axios.get(BASE_URL + `/profile/${id}`, { withCredentials: true })
       const user = res?.data?.data
+      setIsConnected(prev => res?.data?.isConnected)
       setProfileData(user)
       setMessage(res.data.data)
     }
@@ -31,6 +33,11 @@ const Profile = () => {
       setMessage(err.message)
     }
   }
+
+  const handleMessageClick = () => {
+
+  }
+
 
   const handleConnectClick = async (e) => {
     try {
@@ -44,11 +51,11 @@ const Profile = () => {
       setMessage(err?.response?.data?.message)
       setShowToast(prev => !prev)
     }
-    finally{
+    finally {
       setTimeout(() => {
         setShowToast(prev => !prev)
         setMessage('')
-      }, 3000)      
+      }, 3000)
     }
   }
 
@@ -77,17 +84,25 @@ const Profile = () => {
             </div>
           </div>
           <div className="card-body left-0 sm:-ml-5">
-            <h2 className="card-title text-2xl sm:text-2xl font-bold">{profileData?.firstName} {profileData?.lastName}</h2>
+            <h2 className="card-title text-2xl sm:text-2xl font-bold">{profileData?.firstName} {profileData?.lastName} <span className='text-sm'>▸{isConnected ? "1st" : id==null ? "You" : "2nd+"}</span></h2>
             <p className='pb-5 text-sm sm:text-lg'>{profileData?.about}</p>
             {id ?
               <div className="card-actions justify-start">
-                <button className="btn btn-primary" onClick={handleConnectClick}>
-                  Connect
-                </button>
-              </div>: 
+                {
+                  isConnected
+                    ?
+                    <button className="btn btn-primary" onClick={handleMessageClick}>
+                      Message
+                    </button>
+                    :
+                    <button className="btn btn-primary" onClick={handleConnectClick}>
+                      Connect
+                    </button>
+                }
+              </div> :
               <div className="card-actions justify-start btn-square">
                 <button className="btn btn-primary" onClick={() => navigate('/profile/edit')}>Edit</button>
-              </div> 
+              </div>
             }
           </div>
         </div>

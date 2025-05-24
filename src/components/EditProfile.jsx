@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from 'react'
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+import Spinner from './Spinner'
 import { addUser } from "../utils/store/slices/userSlice";
 
 const EditProfile = () => {
@@ -12,6 +13,7 @@ const EditProfile = () => {
     const [photoUrl, setPhotoUrl] = useState('');
     const [skills, setSkills] = useState([]);
     const [gender, setGender] = useState('');
+    const [loading, setLoading] = useState(false)
     const [age, setAge] = useState('');
     const [message, setMessage] = useState(null)
 
@@ -23,6 +25,7 @@ const EditProfile = () => {
     const handleSaveChanges = async () => {
         setMessage('')
         try {
+            setLoading(prev => true)
             const res = await axios.patch(BASE_URL + '/profile/edit', {
                 about, firstName, lastName, photoUrl, gender, skills
             }, { withCredentials: true })
@@ -34,6 +37,9 @@ const EditProfile = () => {
         catch (err) {
             console.log(err)
             setMessage(err?.response?.data)
+        }
+        finally {
+            setLoading(prev => false)
         }
     }
 
@@ -123,10 +129,9 @@ const EditProfile = () => {
                             </div>
                         </div>
                         {message ? <p className={`w-54 ${message.includes('Your profile') ? 'text-green-700' : 'text-red-600'}`} >{message}</p> : ''}
-                        <button className="btn  btn-secondary mt-3" onClick={handleSaveChanges} >Save</button>
+                        <button className="btn btn-secondary mt-3" disabled={loading} onClick={handleSaveChanges} >{loading ? <Spinner /> :  "Save"}</button>
                     </div>
                 </div>
-
             </div>
         </div>
     )

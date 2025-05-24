@@ -21,7 +21,7 @@ const ProfileSkeleton = () => {
                         <div className="card-body left-0 sm:-ml-5">
                             {/* <h2 className="card-title text-2xl sm:text-2xl font-bold">{profileData?.firstName} {profileData?.lastName}</h2> */}
 
-                            <div className="flex w-full sm:w-52 flex-col gap-4">
+                            <div className="flex w-36 sm:w-52 flex-col gap-4">
                                 <div className="skeleton h-4 w-full"></div>
                             </div>
 

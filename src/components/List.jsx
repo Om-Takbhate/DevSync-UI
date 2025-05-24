@@ -47,7 +47,7 @@ const List = ({ listItems }) => {
                 {
                     listItems && listItems?.map((listItem, index) =>
                         listItem && <Link to={`/profile/${listItem?.fromUserId?._id || listItem?._id}`} key={listItem?._id || listItem?.fromUserId?._id} className=' shadow-md hover:cursor-pointer bg-base-200 my-1 '>
-                            <li className="list-row">
+                            <li className="list-row hover:bg-base-300">
                                 <div><img className="size-15 rounded-box object-cover object-center" src={listItem?.photoUrl || listItem?.fromUserId?.photoUrl} /></div>
                                 <div className={`flex sm:flex-row  justify-between ${listItem?.fromUserId ? 'flex-col' : ''} items-center`}>
                                     <div className=''>
