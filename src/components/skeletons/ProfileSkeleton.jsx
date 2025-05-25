@@ -14,7 +14,7 @@ const ProfileSkeleton = () => {
                     <div className="card card-side  absolute  shadow-2xl w-[98%] flex flex-col t-0 mt-10 sm:px-5 sm:ml-2 mb-4 ">
                         <div className="avatar ml-4 sm:ml-0">
                             <div className=" w-36 h-36 sm:w-38 sm:h-38 rounded-xl ">
-                                <div className="skeleton w-36 h-36 sm:w-38 sm:h-38 rounded-xl bg-gray-950 "></div>
+                                <div className="skeleton w-36 h-36 sm:w-38 sm:h-38 rounded-xl !bg-gray-400 "></div>
                                 {/* <img src={profileData?.photoUrl} className='object-cover object-center' /> */}
                             </div>
                         </div>

@@ -49,7 +49,7 @@ const Profile = () => {
     catch (err) {
       console.log(err)
       setMessage(err?.response?.data?.message)
-      setShowToast(prev => !prev)
+      setShowToast(prev => !prev)  
     }
     finally {
       setTimeout(() => {
